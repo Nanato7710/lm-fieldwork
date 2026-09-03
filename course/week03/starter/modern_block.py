@@ -91,4 +91,4 @@ if __name__ == "__main__":
     y = ModernBlock()(x)
     print("input -> output:", tuple(x.shape), "->", tuple(y.shape))
     for cached in range(1, 4):
-        print("one K/V cache after decode step", cached, ":", kv_cache_shape(2, 2, cached, 8))
+        print("conceptual K/V cache shape with cached_tokens", cached, ":", kv_cache_shape(2, 2, cached, 8))
