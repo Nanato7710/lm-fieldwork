@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from lm_fieldwork.paths import find_repository_root
 from lm_fieldwork.tokenization import CharacterTokenizer, train_local_bpe
 
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = find_repository_root(Path(__file__).resolve())
 CORPUS = ROOT / "data/sample/tiny_ja.txt"
 TEXT = "学生は短い文章を読み、次に来る文字を予想してからコードを動かした。"
 

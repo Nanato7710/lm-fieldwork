@@ -20,9 +20,9 @@ Transformerの内部理解はまだ求めません。
 1. 「Learning goals」を読み、notesのdata flowへ最初の予想を書く（5分）。
 2. [tasks.md](tasks.md)を開き、以降はchecklistを上から進める。
 3. [Tokenization primer](tokenization_primer.md)とHugging Faceの指定範囲を読む（30〜45分）。
-4. tokenizationの小さな観察を実行し、3通りの分け方を比べる（15〜20分）。
+4. tokenizationの予想をnotesへ書き、小さな観察で3通りの分け方を比べる（15〜20分）。
 5. 言語処理100本ノックの問49を確認演習として読む（15〜20分）。
-6. [Generation primer](generation_primer.md)を読み、固定したlogitsを観察する（20〜25分）。
+6. [Generation primer](generation_primer.md)を読み、予想を書いてから固定したlogitsを観察する（20〜25分）。
 7. 言語処理100本ノックの問90、91、93を確認演習として読む（20〜30分）。
 8. notesのdata flow、4語の説明、未解決の疑問を完成させる（15〜20分）。
 9. 「完了の目安」と照合し、meetingの持参物を揃える。
@@ -49,12 +49,13 @@ Transformerの内部理解はまだ求めません。
 
 ## Core
 
-1. `uv run python course/preweek/starter/tokenization_observation.py`を実行し、3通りのtoken数とtoken列を比べる。
-2. 問49を読み、tokenizerが違うと数が変わり得る理由と、token数が増えたときに起こりそうなことをnotesへ書く。
-3. `uv run python course/preweek/starter/generation_observation.py`を実行し、temperatureを変えたときの確率分布を比べる。
-4. 問90、91、93を読み、`text -> ? -> token IDs -> ? -> logits -> ? -> next token`の`?`を埋める。
-5. `work/preweek/notes.md`にtoken、logits、temperature、perplexityを各1〜2文で説明する。
-6. まだ分からないことを最低1つ書く。
+1. 3通りのtoken数を予想してから、`uv run python course/preweek/starter/tokenization_observation.py`を実行する。
+2. 予想と観察結果を比べ、問49への回答とともにnotesへ書く。
+3. temperatureを変えたときの確率分布を予想してから、`uv run python course/preweek/starter/generation_observation.py`を実行する。
+4. 予想と観察結果を比べ、temperatureで変わったものと変わらなかったものをnotesへ書く。
+5. 問90、91、93を読み、`text -> ? -> token IDs -> ? -> logits -> ? -> next token`の`?`を埋める。
+6. `work/preweek/notes.md`にtoken、logits、temperature、perplexityを各1〜2文で説明する。
+7. まだ分からないことを最低1つ書く。
 
 ## Standard
 

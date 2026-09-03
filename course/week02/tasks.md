@@ -7,15 +7,18 @@
 
 ```bash
 uv run python course/week02/starter/tokenizer_comparison.py
-uv run python course/week02/starter/train_minilm.py --steps 20 --context-length 64
 cp course/week02/starter/train_minilm.py work/week02/experiment.py
+uv run python work/week02/experiment.py --steps 20 --context-length 32
+uv run python work/week02/experiment.py --steps 20 --context-length 128
 ```
 
-比較前に次を notes に書きます: Hypothesis / Changed variable / Fixed conditions / What is not controlled / Metrics。1 run ごとに train loss、validation loss、tokens seen、sample を記録します。
+実行前にHypothesis、Changed variable、Fixed conditions、What is not controlled、Metricsをnotesへ書きます。
+実行後は各runのtrain loss、validation loss、tokens seen、sampleを記録します。
+同じstep数でもcontext lengthが違えばtokens seenとposition embeddingのparameter数が変わるため、実際の値を比較に含めます。
 
 ## Standard
 
-一変数だけ変えた2 run を行います。同じ step 数でも context length が違えば tokens seen が変わり得るため、実際の値を確認してください。
+Coreと同じ2条件を`--steps 100`で再実行し、短いrunだけで見えた傾向が保たれるか確認します。
 
 ## Deep Dive
 

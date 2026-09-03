@@ -7,7 +7,8 @@
 ```text
 [
   {role: "user", content: "短く説明して"},
-  {role: "assistant", content: "何を説明しますか"}
+  {role: "assistant", content: "何を説明しますか"},
+  {role: "user", content: "tokenについて"}
 ]
 ```
 
@@ -26,5 +27,24 @@ token IDs
 chat templateは入力形式を整える規則であり、post-trainingそのものではありません。
 同じmessagesでもtemplateが違えばtoken列が変わり、想定外のtemplateはモデルの応答を悪化させることがあります。
 
-問94、95では、生成結果だけでなく、messagesがどの文字列とtoken列へ変わったかを確認します。
-モデルのdownloadや生成の再現が難しい場合は、問題文と出力例からこのdata flowを追えばCoreとして十分です。
+## 固定したtoy templateを追う
+
+この教材の観察コードでは、各messageを次の規則で直列化します。
+
+```text
+<|role|>
+content
+```
+
+すべてのmessageを並べた後、次のassistant応答を始めるために`<|assistant|>`を末尾へ加えます。
+これは観察用に作った規則であり、実在するpretrained modelのtemplateではありません。
+
+まず、上のmessagesへ規則を手作業で適用し、できあがる文字列を`work/week04/paper_notes.md`へ予想として書きます。
+次に、以下を実行して直列化した文字列とtoken IDsを確認します。
+
+```bash
+uv run python course/week04/starter/chat_template_observation.py
+```
+
+問94、95では、生成結果ではなく、messages、template適用後の文字列、token IDsの関係を確認します。
+外部モデルのdownloadや生成の再現はCoreの条件ではありません。

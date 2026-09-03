@@ -16,9 +16,9 @@
 1. 「Learning goals」を読み、tokenizer、data、training の三つに項目を分ける。
 2. notes を開き、現時点の答えと分からない用語を書く。
 3. Hugging Face LLM Course の tokenizer 範囲を読み、tokenizer comparison を実行する。
-4. causal LM の指定範囲を読み、一変数比較の Hypothesis を書いてから Mini LM を変更せず20 steps 実行する。
+4. causal LMの指定範囲を読み、context lengthを32から128へ変えたときのHypothesisを書く。
 5. [tasks.md](tasks.md) に従って starter を `work/week02/experiment.py` へコピーする。
-6. context length など一項目だけを変え、2 run の条件と結果を notes に記録する。
+6. context length以外の引数を固定して2 runを行い、条件と結果をnotesに記録する。
 7. 「完了の目安」と照合し、比較表と未統制条件を meeting に持っていく。
 
 ## Learning goals
@@ -33,13 +33,15 @@ character / word / subword、BPE、vocabulary size と sequence length、embeddi
 ## Core（約3時間）
 
 1. `tokenizer_comparison.py` で original Japanese corpus の char tokenizer とローカル BPE を比較する。
-2. `train_minilm.py --steps 20` で train/validation loss、tokens seen、generation sample を確認する。
-3. context length など一変数を選び、Hypothesis と固定条件を事前登録して2 run 比較する。
-4. `work/week02/notes.md` に未統制条件も書く。
+2. `train_minilm.py`を`work/week02/experiment.py`へコピーする。
+3. context lengthを32と128にして、同じseed、width、layers、steps、batch size、dataで2 run比較する。
+4. context lengthに伴ってtokens seenとposition embeddingのparameter数も変わることを結果へ記録する。
+5. `work/week02/notes.md` に未統制条件も書く。
 
 ## Standard
 
-context 32 vs 128、corpus amount small vs full のいずれかを同じ seed / model size / steps で比較する。wall-clock は機種依存の参考値として扱う。
+Coreと同じcontext length比較を100 stepsへ延長し、20 stepsの結果と傾向が同じか確認する。
+wall-clockは機種依存の参考値として扱う。
 
 ## Deep Dive（optional）
 

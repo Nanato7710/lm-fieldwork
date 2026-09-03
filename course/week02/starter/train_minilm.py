@@ -9,11 +9,12 @@ import torch
 
 from lm_fieldwork.device import select_device
 from lm_fieldwork.minigpt import MiniGPT, MiniGPTConfig
+from lm_fieldwork.paths import find_repository_root
 from lm_fieldwork.tokenization import CharacterTokenizer
 from lm_fieldwork.training import train_steps
 
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = find_repository_root(Path(__file__).resolve())
 
 
 def main() -> None:

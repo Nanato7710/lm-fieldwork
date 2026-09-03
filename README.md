@@ -10,16 +10,31 @@ LM Fieldwork は、Python と PyTorch の基礎がある NLP 初学者向けの�
 
 ## 初回セットアップ
 
-### 1. fork を clone する
+### 1. 前提ツールを確認する
+
+初回だけ、GitHubアカウント、Git、uvを準備します。
+Python 3.12はuvで導入するため、システムのPythonを入れ替える必要はありません。
+
+```bash
+git --version
+uv --version
+```
+
+Gitが見つからない場合は、[GitHubのGitセットアップ案内](https://docs.github.com/en/get-started/git-basics/set-up-git)に従います。
+macOSでHomebrewを利用している場合は、`brew install uv`でuvを導入できます。
+それ以外の導入方法は[uv公式のインストール手順](https://docs.astral.sh/uv/getting-started/installation/)で確認します。
+
+### 2. forkをcloneする
 
 まだ clone していない場合は、先に [fork workflow](docs/FORK_WORKFLOW.md) に従います。
 すでにこのリポジトリを開いている場合は、次へ進みます。
 
-### 2. 実行環境を確認する
+### 3. 実行環境を確認する
 
-リポジトリのルート（この README がある場所）で、次の3コマンドを実行します。
+リポジトリのルート（このREADMEがある場所）で、Python 3.12と依存関係を準備してから環境を確認します。
 
 ```bash
+uv python install 3.12
 uv sync
 uv run python scripts/check_environment.py
 uv run pytest -q
@@ -30,7 +45,7 @@ MPS や CUDA が利用できない場合でも、`Selected device: cpu` と表�
 
 環境確認で止まった場合は、エラーメッセージを省略せず講師か LLM に共有してください。
 
-### 3. Pre-Week を開始する
+### 4. Pre-Weekを開始する
 
 次の順番でファイルを開きます。
 
