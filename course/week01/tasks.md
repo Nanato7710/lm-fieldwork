@@ -8,9 +8,12 @@
 ```bash
 uv run python course/week01/starter/attention_walkthrough.py --show-shapes
 cp course/week01/starter/attention_walkthrough.py work/week01/experiment.py
+uv run python work/week01/experiment.py --show-shapes --no-causal-mask
 ```
 
-コピー側で `causal=True` を `False` に変えます。先に notes を書き、同じ seed/input/projection を固定してください。観測は「未来情報が見えるか」と shape に絞ります。
+最後のコマンドは、コピー側の`--no-causal-mask`オプションでcausal maskだけを外します。
+先にnotesを書き、同じseed、input、projectionを固定してください。
+Q/K/V、scores、weights、headごとの出力、結合後のoutputまでのshapeと、未来位置のweightを変更前後で比べます。
 
 ## Standard
 

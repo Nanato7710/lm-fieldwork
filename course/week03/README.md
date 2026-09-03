@@ -41,7 +41,9 @@ RoPE / RMSNorm / SwiGLU / GQA / KV cache について、block のどこにある
 
 ## Standard
 
-担当外 track も code と原論文の指定範囲を追い、対応表を完成させる。KV cache demo で cache length が1 tokenずつ増えることを確認する。
+担当外trackもcodeと原論文の指定範囲を追い、対応表を完成させる。
+starterが表示するのは、`cached_tokens`を1ずつ増やしたときのK/V cacheの概念的なshapeです。
+K/V tensorの保存、追記、再利用を実装したcache動作の検証ではありません。
 
 ## Deep Dive（optional）
 

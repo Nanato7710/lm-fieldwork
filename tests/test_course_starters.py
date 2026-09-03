@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import os
 import re
+import runpy
 import subprocess
 import sys
 from pathlib import Path
@@ -15,12 +16,12 @@ from lm_fieldwork.paths import find_repository_root
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run_starter(relative_path: str) -> str:
+def run_starter(relative_path: str, *arguments: str) -> str:
     environment = os.environ.copy()
     environment["HF_HUB_OFFLINE"] = "1"
     environment["TRANSFORMERS_OFFLINE"] = "1"
     result = subprocess.run(
-        [sys.executable, relative_path],
+        [sys.executable, relative_path, *arguments],
         cwd=ROOT,
         env=environment,
         check=True,
@@ -54,6 +55,35 @@ def test_generation_observation_probabilities() -> None:
         (distribution["読む"] for distribution in distributions), reverse=True
     )
     assert "toy perplexity: 2.520" in output
+
+
+def test_attention_walkthrough_exposes_core_shape_trace_and_mask_toggle() -> None:
+    masked = run_starter("course/week01/starter/attention_walkthrough.py", "--show-shapes")
+    unmasked = run_starter(
+        "course/week01/starter/attention_walkthrough.py", "--show-shapes", "--no-causal-mask"
+    )
+
+    assert "Q/K/V per head:" in masked
+    assert "scores Q @ K^T:" in masked
+    assert "weights @ V:" in masked
+    assert "causal mask: on" in masked
+    assert "causal mask: off" in unmasked
+
+
+def test_training_corpus_is_split_before_repetition() -> None:
+    namespace = runpy.run_path(str(ROOT / "course/week02/starter/train_minilm.py"))
+    prepare_corpus = namespace["prepare_corpus"]
+
+    _, train_data, validation_data = prepare_corpus("abcdefghijklmnopqrst")
+
+    assert set(train_data.tolist()).isdisjoint(validation_data.tolist())
+
+
+def test_modern_block_labels_cache_shapes_as_conceptual() -> None:
+    output = run_starter("course/week03/starter/modern_block.py")
+
+    assert "conceptual K/V cache shape" in output
+    assert "after decode step" not in output
 
 
 def test_chat_template_observation_runs_offline() -> None:

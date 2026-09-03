@@ -16,7 +16,7 @@
 2. notes を開き、現時点の答えと分からない用語を書く。
 3. 動画を指定 timestamp の順に見てから論文の指定箇所を読み、causal mask を外したときの Prediction を書く。
 4. [tasks.md](tasks.md) の最初のコマンドで、変更前の shape と attention weights を確認する。
-5. starter を `work/week01/experiment.py` へコピーし、causal mask だけを変更する。
+5. starter を `work/week01/experiment.py` へコピーし、`--no-causal-mask`を付けてcausal maskだけを外す。
 6. 変更前後を比べ、notes の Result と Interpretation を書く。
 7. 「完了の目安」と照合し、shape trace と未解決点を meeting に持っていく。
 
@@ -37,14 +37,14 @@ causal LM、embedding、positional information、Q/K/V、scaled dot-product atte
 
 ## Core（約3時間）
 
-1. 指定範囲を読み、`course/week01/starter/attention_walkthrough.py --show-shapes` を実行する。
+1. 指定範囲を読み、`course/week01/starter/attention_walkthrough.py --show-shapes`を実行してQ/K/Vからoutputまでのshapeを記録する。
 2. starter を `work/week01/experiment.py` へコピーする。
-3. causal mask を外したときの変化を、実行前に予測してから観測する。
+3. `work/week01/experiment.py --show-shapes --no-causal-mask`を実行し、causal maskを外したときの変化を予測と比べる。
 4. `work/week01/notes.md` に Prediction / Changed variable / Fixed conditions / Result / Interpretation を残す。
 
 ## Standard
 
-`Q @ K^T` と `weights @ V` の shape を手で書く。余力があれば tiny LM の mask on/off を短く比較するが、低い training loss をそのまま改善と呼ばない。
+`B=2, T=4, C=8, n_heads=2`でも`Q @ K^T`と`weights @ V`のshapeを手で書く。余力があればtiny LMのmask on/offを短く比較するが、低いtraining lossをそのまま改善と呼ばない。
 
 ## Deep Dive（optional）
 

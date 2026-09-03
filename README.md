@@ -102,7 +102,7 @@ Deep Dive は次週へ進む条件ではありません。
 |---|---|---|---|
 | 0 | [Pre-Week](course/preweek/README.md) | 短い導入と観察の後、確認演習でtokenから次tokenまでを追う | [`work/preweek/notes.md`](work/preweek/notes.md) |
 | 1 | [Week 1](course/week01/README.md) | attention の shape を追い、causal mask を外す | [`work/week01/`](work/week01/) |
-| 2 | [Week 2](course/week02/README.md) | tokenizer と Mini LM を動かし、一変数を比較する | [`work/week02/`](work/week02/) |
+| 2 | [Week 2](course/week02/README.md) | tokenizer と Mini LM を動かし、一つの設定変更に伴う条件の変化を整理する | [`work/week02/`](work/week02/) |
 | 3 | [Week 3](course/week03/README.md) | 現代 LLM の5部品をコードと論文で対応付ける | [`work/week03/`](work/week03/) |
 | 4 | [Week 4](course/week04/README.md) | 2人で同じ論文を読み、claim と evidence を分ける | [`work/week04/`](work/week04/) |
 
